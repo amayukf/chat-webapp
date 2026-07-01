@@ -122,6 +122,16 @@ If you want to develop with hot reloading:
 
 The app is ready to deploy! It serves the built frontend directly from the backend, so you only need to deploy one service.
 
+### Vercel Deployment (Recommended)
+
+1. **Make sure your code is on GitHub** (we just did that!)
+2. Go to [Vercel](https://vercel.com/) and connect your GitHub account
+3. Import the `chat-webapp` repository
+4. **Add Environment Variables** in Vercel project settings:
+   - Key: `MONGODB_URI`
+   - Value: Your MongoDB Atlas connection string (same as in .env)
+5. Deploy! Vercel will automatically use the `vercel.json` config
+
 ### Example Deployment (Render.com)
 
 1. Push your code to GitHub
