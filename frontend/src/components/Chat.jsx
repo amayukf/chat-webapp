@@ -181,7 +181,7 @@ function Chat({ socket, user, users, isConnected, setUser }) {
   return (
     <div className="chat-container">
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${selectedUser ? 'hidden-mobile' : 'show-mobile'}`}>
         <div className="sidebar-header">
           <div className="user-info">
             <div className="user-avatar">{user.username.charAt(0).toUpperCase()}</div>
@@ -194,7 +194,7 @@ function Chat({ socket, user, users, isConnected, setUser }) {
               </div>
             </div>
           </div>
-          <button className="logout-button" onClick={handleLogout}>
+          <button className="logout-button" onClick={handleLogout} title="Logout">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
               <polyline points="16,17 21,12 16,7"/>
@@ -260,12 +260,18 @@ function Chat({ socket, user, users, isConnected, setUser }) {
       </div>
 
       {/* Main Chat */}
-      <div className="chat-main">
+      <div className={`chat-main ${selectedUser ? 'show-mobile' : 'hidden-mobile'}`}>
         {selectedUser ? (
           <>
             {/* Chat Header */}
             <div className="chat-header">
               <div className="chat-user-info">
+                <button className="back-button" onClick={() => setSelectedUser(null)}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                  </svg>
+                </button>
                 <div className="user-avatar">{selectedUser.username.charAt(0).toUpperCase()}</div>
                 <div className="user-details">
                   <div className="user-name">{selectedUser.username}</div>

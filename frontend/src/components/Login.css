@@ -8,13 +8,21 @@
   background-size: 400% 400%;
   animation: gradientShift 10s ease infinite;
   padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", sans-serif;
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .login-card {
@@ -22,7 +30,7 @@
   backdrop-filter: blur(20px);
   border-radius: 32px;
   padding: 48px 44px;
-  box-shadow: 
+  box-shadow:
     0 25px 60px rgba(0, 0, 0, 0.25),
     0 0 0 1px rgba(255, 255, 255, 0.5) inset;
   text-align: center;
@@ -34,20 +42,28 @@
 }
 
 .login-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.1) 0%,
+    transparent 70%
+  );
   animation: rotateGlow 15s linear infinite;
   pointer-events: none;
 }
 
 @keyframes rotateGlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slideUpFade {
@@ -74,11 +90,12 @@
 }
 
 @keyframes bounceFloat {
-  0%, 100% { 
-    transform: translateY(0px) scale(1); 
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
   }
-  50% { 
-    transform: translateY(-12px) scale(1.05); 
+  50% {
+    transform: translateY(-12px) scale(1.05);
   }
 }
 
@@ -134,8 +151,15 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.9); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
 }
 
 .connection-status.connected .connection-dot {
@@ -149,8 +173,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .login-form {
@@ -175,10 +204,23 @@
 }
 
 @keyframes shake {
-  10%, 90% { transform: translateX(-1px); }
-  20%, 80% { transform: translateX(2px); }
-  30%, 50%, 70% { transform: translateX(-4px); }
-  40%, 60% { transform: translateX(4px); }
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
 }
 
 .login-form input {
@@ -264,7 +306,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .toggle-mode {
@@ -290,4 +334,32 @@
 .toggle-mode button:hover {
   background-color: rgba(102, 126, 234, 0.1);
   color: #5a67d8;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .login-card {
+    padding: 32px 24px;
+    border-radius: 24px;
+    margin: 16px;
+  }
+
+  .login-icon {
+    font-size: 56px;
+  }
+
+  .login-card h1 {
+    font-size: 28px;
+  }
+
+  .login-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .login-form input,
+  .login-form button {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
 }
