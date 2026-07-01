@@ -3,7 +3,8 @@
 node_modules/
 
 # Build outputs
-dist/
+# Keep frontend/dist so backend can serve it
+# dist/
 build/
 
 # Environment variables
