@@ -11,10 +11,10 @@ const server = http.createServer(app);
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:3001'],
+  origin: process.env.NODE_ENV === 'production' ? true : ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:3001'],
   credentials: true
 }));
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/chat-app';
@@ -136,6 +136,34 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ 
       error: 'Something went wrong' 
     });
+  }
+});
+
+// Update user avatar
+app.post('/api/avatar', async (req, res) => {
+  try {
+    const { userId, avatar } = req.body;
+    if (!userId || avatar === undefined) {
+      return res.status(400).json({ error: 'User ID and avatar URL are required' });
+    }
+    
+    // Simple URL validation (or allow empty to clear)
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    user.avatar = avatar;
+    await user.save();
+    
+    // Broadcast the update to all clients
+    const allUsers = await User.find();
+    io.emit('userList', allUsers);
+    
+    res.json({ success: true, avatar: user.avatar });
+  } catch (error) {
+    console.error('❌ Avatar update error:', error);
+    res.status(500).json({ error: 'Something went wrong while updating avatar' });
   }
 });
 
